@@ -110,3 +110,5 @@ Automated CI/CD pipeline aggregating daily research papers on Defense-Tech, Dron
 * **[Defense-AI Fact]** Swarm drones use decentralized logic to coordinate without a central leader.
 ### Log: 2026-03-30
 * **[Defense-AI Fact]** Swarm drones use decentralized logic to coordinate without a central leader.
+### Log: 2026-03-30
+* **[Research]** arXiv Query: search_query=all:drone&amp;id_list=&amp;start=0&amp;max_results=1 - [Link](https://arxiv.org/api/OEo7osKFQaw8A5Yd8Sk85SttgA8)
