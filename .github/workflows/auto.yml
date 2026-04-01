@@ -26,8 +26,8 @@ jobs:
       # Commit changes to README
       - name: Commit and Push
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "CODERUDRA-X"
+          git config --global user.email "harshgroups247@gmail.com"
           git add README.md
           git commit -m "Automated Defense-AI Research Update" || exit 0
           git push
