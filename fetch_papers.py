@@ -2,7 +2,8 @@ import urllib.request
 import datetime
 import random
 
-date_str = datetime.datetime.now().strftime("%Y-%m-%d")
+# YAHAN CHANGE KIYA HAI: Added %H:%M:%S for unique commits
+date_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # Fallback intelligence if the API fails
 fallback_facts = [
@@ -17,10 +18,12 @@ try:
     
     if "<entry>" in response:
         # Extract title and link securely
-        t_start, t_end = response.find('<title>') + 7, response.find('</title>')
+        t_start = response.find('<title>') + 7
+        t_end = response.find('</title>')
         title = response[t_start:t_end].replace('\n', ' ').strip()
         
-        l_start, l_end = response.find('<id>') + 4, response.find('</id>')
+        l_start = response.find('<id>') + 4
+        l_end = response.find('</id>')
         link = response[l_start:l_end].strip()
         
         log_entry = f"\n* **[Research]** {title} - [Link]({link})\n"
