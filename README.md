@@ -190,3 +190,5 @@ Automated CI/CD pipeline aggregating daily research papers on Defense-Tech, Dron
 * **[Defense-AI Fact]** Swarm drones use decentralized logic to coordinate without a central leader.
 ### Log: 2026-04-02 19:03:09
 * **[Defense-AI Fact]** YOLOv8 is highly effective for real-time threat detection in edge devices.
+### Log: 2026-04-02 20:40:35
+* **[Defense-AI Fact]** Autonomous navigation relies heavily on sensor fusion (LiDAR + Radar + Vision).
