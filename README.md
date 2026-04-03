@@ -208,3 +208,5 @@ Automated CI/CD pipeline aggregating daily research papers on Defense-Tech, Dron
 * **[Defense-AI Fact]** Autonomous navigation relies heavily on sensor fusion (LiDAR + Radar + Vision).
 ### Log: 2026-04-03 14:50:26
 * **[Defense-AI Fact]** Autonomous navigation relies heavily on sensor fusion (LiDAR + Radar + Vision).
+### Log: 2026-04-03 16:49:26
+* **[Defense-AI Fact]** YOLOv8 is highly effective for real-time threat detection in edge devices.
