@@ -240,3 +240,5 @@ Automated CI/CD pipeline aggregating daily research papers on Defense-Tech, Dron
 * **[Defense-AI Fact]** Autonomous navigation relies heavily on sensor fusion (LiDAR + Radar + Vision).
 ### Log: 2026-04-05 02:55:13
 * **[Research]** arXiv Query: search_query=all:drone&amp;id_list=&amp;start=0&amp;max_results=1 - [Link](https://arxiv.org/api/OEo7osKFQaw8A5Yd8Sk85SttgA8)
+### Log: 2026-04-05 05:46:19
+* **[Research]** arXiv Query: search_query=all:drone&amp;id_list=&amp;start=0&amp;max_results=1 - [Link](https://arxiv.org/api/OEo7osKFQaw8A5Yd8Sk85SttgA8)
