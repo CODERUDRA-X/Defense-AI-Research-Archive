@@ -3,12 +3,12 @@ import datetime
 import random
 import re
 
-# 1. TIMING & DATA (Streak Saver integrated)
+# 1. TIMING & INDEXING
 now = datetime.datetime.now()
 date_str = now.strftime("%Y-%m-%d %H:%M:%S")
 day_of_year = now.timetuple().tm_yday
 
-# 2. THE 20 SACRED PROTOCOLS
+# 2. THE 20 SACRED PROTOCOLS (Full List)
 gita_protocols = [
     {"hook": "Focus on the Logic, not the Green Box.", "verse": "Karma-any-evadhika-raste ma phaleshu kadachana...", "interpretation": "You have a right to perform your prescribed duties (Logic), but you are not entitled to the fruits (Green Squares) of your actions. Let not the reward of the streak be your motive."},
     {"hook": "One-Pointed Intelligence (The Focus).", "verse": "Vyavasayatmika buddhir ekeha kuru-nandana...", "interpretation": "Concentrate on one complex architecture at a time. A fragmented mind creates buggy code; a unified mind builds the future. Multitasking is a fragmentation of power."},
@@ -32,75 +32,59 @@ gita_protocols = [
     {"hook": "Sacrifice of Knowledge (Open Source).", "verse": "Sreyan dravya-mayaj jnanat jnana-yajnah parantapa...", "interpretation": "The sacrifice of sharing knowledge (Open Source/Community) is higher than mere accumulation of private code. To teach is to master."}
 ]
 
-# Pick today's protocol
 protocol_index = day_of_year % len(gita_protocols)
 p = gita_protocols[protocol_index]
 
-# 3. CONSTRUCT THE DIVINE BOX HTML
-gita_box = f"""<div align="center">
-  <table border="0" style="background-color: #050505; border: 2px double #D4AF37; width: 100%; border-radius: 10px; box-shadow: 0px 0px 20px rgba(212, 175, 55, 0.2);">
-    <tr>
-      <td style="padding: 40px; text-align: center;">
-        <span style="color: #D4AF37; font-size: 2em;">❈</span>
-        <br><br>
-        <h2 style="color: #D4AF37; font-family: 'Georgia', serif; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 20px;">
-          The Dharma of Action
-        </h2>
-        <p style="color: #F5F5DC; font-family: 'Georgia', serif; font-size: 1.5em; font-style: italic; line-height: 1.6; margin-bottom: 25px;">
-          "{p['verse']}"
-        </p>
-        <hr style="width: 50%; border: 0.5px solid #D4AF37; margin: 20px auto;">
-        <p style="color: #D4AF37; font-family: 'Verdana', sans-serif; font-size: 1.2em; font-weight: bold; margin-top: 20px;">
-          SACRED PROTOCOL: {protocol_index + 1:02d} // {p['hook']}
-        </p>
-        <p style="color: #C0C0C0; font-family: 'Georgia', serif; font-size: 1.1em; line-height: 1.8; max-width: 80%; margin: 0 auto;">
-          {p['interpretation']}
-        </p>
-        <br>
-        <span style="color: #D4AF37; font-size: 2em;">❈</span>
-      </td>
-    </tr>
-  </table>
-</div>
-"""
+# 3. GENERATE ANCIENT GOLD SVG (The real "Vibe" fix)
+svg_code = f"""<svg width="800" height="350" viewBox="0 0 800 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="350" rx="10" fill="#0D1117"/>
+  <rect x="5" y="5" width="790" height="340" rx="8" stroke="#D4AF37" stroke-width="2" stroke-dasharray="10 5"/>
+  <text x="50%" y="60" text-anchor="middle" fill="#D4AF37" font-family="serif" font-size="24" font-weight="bold" letter-spacing="3">THE DHARMA OF ACTION</text>
+  <text x="50%" y="120" text-anchor="middle" fill="#F5F5DC" font-family="serif" font-size="20" font-style="italic">"{p['verse']}"</text>
+  <line x1="200" y1="160" x2="600" y2="160" stroke="#D4AF37" stroke-width="0.5"/>
+  <text x="50%" y="200" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="14" font-weight="bold">PROTOCOL {protocol_index+1:02d} // {p['hook'].upper()}</text>
+  <foreignObject x="80" y="230" width="640" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="color: #C0C0C0; font-family: serif; font-size: 16px; text-align: center; line-height: 1.6;">
+      {p['interpretation']}
+    </div>
+  </foreignObject>
+  <text x="50%" y="330" text-anchor="middle" fill="#D4AF37" font-size="20">❈</text>
+</svg>"""
 
-# 4. FETCH RESEARCH (ARXIV) WITH FALLBACK
-fallback_facts = [
-    "Swarm drones use decentralized logic to coordinate without a central leader.",
-    "YOLOv8 is highly effective for real-time threat detection in edge devices.",
-    "Autonomous navigation relies heavily on sensor fusion (LiDAR + Radar + Vision)."
-]
+with open('gita_verse.svg', 'w', encoding='utf-8') as f:
+    f.write(svg_code)
 
+# 4. ARXIV RESEARCH LOGIC
+fallback_facts = ["Autonomous navigation relies on sensor fusion.", "YOLOv8 is peak edge detection.", "Swarm logic is decentralized."]
 try:
     url = 'http://export.arxiv.org/api/query?search_query=all:drone&max_results=1'
     response = urllib.request.urlopen(url, timeout=10).read().decode('utf-8')
     if "<entry>" in response:
-        t_start = response.find('<title>') + 7
-        t_end = response.find('</title>')
+        t_start, t_end = response.find('<title>') + 7, response.find('</title>')
         title = response[t_start:t_end].replace('\n', ' ').strip()
-        
-        l_start = response.find('<id>') + 4
-        l_end = response.find('</id>')
+        l_start, l_end = response.find('<id>') + 4, response.find('</id>')
         link = response[l_start:l_end].strip()
         log_entry = f"\n* **[Research]** {title} - [Link]({link})\n"
-    else:
-        raise Exception("API empty")
-except Exception:
-    fact = random.choice(fallback_facts)
-    log_entry = f"\n* **[Defense-AI Fact]** {fact}\n"
+    else: raise Exception()
+except:
+    log_entry = f"\n* **[Defense-AI Fact]** {random.choice(fallback_facts)}\n"
 
-# 5. UPDATE README FILE
+# 5. UPDATE README FILE (Correct Regex)
 with open('README.md', 'r', encoding='utf-8') as f:
     content = f.read()
 
-# Auto-replace the Gita box using Regex
+# Fix the Gita Block (This stays the same in README)
+gita_readme_block = f"""<div align="center">
+  <img src="gita_verse.svg" width="100%" alt="Sacred Protocol" />
+</div>
+"""
+
 pattern = re.compile(r".*?", re.DOTALL)
 if pattern.search(content):
-    content = re.sub(pattern, gita_box, content)
+    content = re.sub(pattern, gita_readme_block, content)
 else:
-    # If markers aren't found, just append it
-    content += "\n" + gita_box
+    content = gita_readme_block + "\n" + content
 
-# Append Research Log at bottom
+# Log Entry at bottom
 with open('README.md', 'w', encoding='utf-8') as f:
     f.write(content + f"### Log: {date_str}{log_entry}")
