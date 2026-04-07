@@ -69,22 +69,30 @@ try:
 except:
     log_entry = f"\n* **[Defense-AI Fact]** {random.choice(fallback_facts)}\n"
 
-# 5. UPDATE README FILE (Correct Regex)
+# 5. UPDATE README FILE (Corrected & Safe)
 with open('README.md', 'r', encoding='utf-8') as f:
     content = f.read()
 
-# Fix the Gita Block (This stays the same in README)
-gita_readme_block = f"""<div align="center">
+# Define Markers
+start_marker = ""
+end_marker = ""
+
+# The block that will be inserted
+gita_readme_block = f"""{start_marker}
+<div align="center">
   <img src="gita_verse.svg" width="100%" alt="Sacred Protocol" />
 </div>
-"""
+{end_marker}"""
 
-pattern = re.compile(r".*?", re.DOTALL)
+# Accurate Regex to find only what's between markers
+pattern = re.compile(rf"{start_marker}.*?{end_marker}", re.DOTALL)
+
 if pattern.search(content):
     content = re.sub(pattern, gita_readme_block, content)
 else:
-    content = gita_readme_block + "\n" + content
+    # If markers are missing, add them at the top
+    content = gita_readme_block + "\n\n" + content
 
-# Log Entry at bottom
+# Log Entry at bottom (Keeping your research logs separate)
 with open('README.md', 'w', encoding='utf-8') as f:
-    f.write(content + f"### Log: {date_str}{log_entry}")
+    f.write(content + f"\n### Log: {date_str}{log_entry}")
