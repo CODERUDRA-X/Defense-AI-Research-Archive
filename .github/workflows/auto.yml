@@ -30,4 +30,5 @@ jobs:
           git config --global user.email "harshgroups247@gmail.com"
           git add -A
           git commit -m "Automated Defense-AI Research & Sacred Protocol Update" || exit 0
+          git pull --rebase
           git push
