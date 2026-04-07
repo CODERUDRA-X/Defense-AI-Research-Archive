@@ -23,11 +23,11 @@ jobs:
       - name: Run Fetcher Script
         run: python fetch_papers.py
         
-      # Commit changes to README
+      # Commit changes to README and SVG
       - name: Commit and Push
         run: |
           git config --global user.name "CODERUDRA-X"
           git config --global user.email "harshgroups247@gmail.com"
-          git add README.md
-          git commit -m "Automated Defense-AI Research Update" || exit 0
+          git add -A
+          git commit -m "Automated Defense-AI Research & Sacred Protocol Update" || exit 0
           git push
