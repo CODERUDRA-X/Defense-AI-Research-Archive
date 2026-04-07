@@ -3,12 +3,12 @@ import datetime
 import random
 import re
 
-# 1. TIMING & INDEXING
+# 1. TIMING & DATA
 now = datetime.datetime.now()
 date_str = now.strftime("%Y-%m-%d %H:%M:%S")
 day_of_year = now.timetuple().tm_yday
 
-# 2. THE 20 SACRED PROTOCOLS (Full List)
+# 2. THE 20 SACRED PROTOCOLS
 gita_protocols = [
     {"hook": "Focus on the Logic, not the Green Box.", "verse": "Karma-any-evadhika-raste ma phaleshu kadachana...", "interpretation": "You have a right to perform your prescribed duties (Logic), but you are not entitled to the fruits (Green Squares) of your actions. Let not the reward of the streak be your motive."},
     {"hook": "One-Pointed Intelligence (The Focus).", "verse": "Vyavasayatmika buddhir ekeha kuru-nandana...", "interpretation": "Concentrate on one complex architecture at a time. A fragmented mind creates buggy code; a unified mind builds the future. Multitasking is a fragmentation of power."},
@@ -35,64 +35,64 @@ gita_protocols = [
 protocol_index = day_of_year % len(gita_protocols)
 p = gita_protocols[protocol_index]
 
-# 3. GENERATE ANCIENT GOLD SVG (The real "Vibe" fix)
-svg_code = f"""<svg width="800" height="350" viewBox="0 0 800 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="350" rx="10" fill="#0D1117"/>
-  <rect x="5" y="5" width="790" height="340" rx="8" stroke="#D4AF37" stroke-width="2" stroke-dasharray="10 5"/>
-  <text x="50%" y="60" text-anchor="middle" fill="#D4AF37" font-family="serif" font-size="24" font-weight="bold" letter-spacing="3">THE DHARMA OF ACTION</text>
-  <text x="50%" y="120" text-anchor="middle" fill="#F5F5DC" font-family="serif" font-size="20" font-style="italic">"{p['verse']}"</text>
-  <line x1="200" y1="160" x2="600" y2="160" stroke="#D4AF37" stroke-width="0.5"/>
-  <text x="50%" y="200" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="14" font-weight="bold">PROTOCOL {protocol_index+1:02d} // {p['hook'].upper()}</text>
-  <foreignObject x="80" y="230" width="640" height="100">
-    <div xmlns="http://www.w3.org/1999/xhtml" style="color: #C0C0C0; font-family: serif; font-size: 16px; text-align: center; line-height: 1.6;">
+# 3. GENERATE THE ANCIENT GOLD SVG
+svg_code = f"""<svg width="800" height="380" viewBox="0 0 800 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="380" rx="15" fill="#050505"/>
+  <rect x="10" y="10" width="780" height="360" rx="10" stroke="#D4AF37" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="50%" y="60" text-anchor="middle" fill="#D4AF37" font-family="serif" font-size="26" font-weight="bold" letter-spacing="4">THE DHARMA OF ACTION</text>
+  <text x="50%" y="130" text-anchor="middle" fill="#F5F5DC" font-family="serif" font-size="20" font-style="italic">"{p['verse']}"</text>
+  <line x1="250" y1="180" x2="550" y2="180" stroke="#D4AF37" stroke-width="0.5"/>
+  <text x="50%" y="230" text-anchor="middle" fill="#D4AF37" font-family="sans-serif" font-size="14" font-weight="bold" letter-spacing="1">PROTOCOL {protocol_index+1:02d} // {p['hook'].upper()}</text>
+  <foreignObject x="100" y="260" width="600" height="100">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="color: #C0C0C0; font-family: serif; font-size: 17px; text-align: center; line-height: 1.6;">
       {p['interpretation']}
     </div>
   </foreignObject>
-  <text x="50%" y="330" text-anchor="middle" fill="#D4AF37" font-size="20">❈</text>
+  <text x="50%" y="360" text-anchor="middle" fill="#D4AF37" font-size="22">❈</text>
 </svg>"""
 
 with open('gita_verse.svg', 'w', encoding='utf-8') as f:
     f.write(svg_code)
 
 # 4. ARXIV RESEARCH LOGIC
-fallback_facts = ["Autonomous navigation relies on sensor fusion.", "YOLOv8 is peak edge detection.", "Swarm logic is decentralized."]
+fallback_facts = ["Autonomous navigation relies on sensor fusion.", "YOLOv11 is peak edge detection.", "Swarm logic is decentralized."]
 try:
-    url = 'http://export.arxiv.org/api/query?search_query=all:drone&max_results=1'
+    url = 'http://export.arxiv.org/api/query?search_query=all:drone+AND+all:ai&max_results=1&sortBy=submittedDate&sortOrder=descending'
     response = urllib.request.urlopen(url, timeout=10).read().decode('utf-8')
     if "<entry>" in response:
-        t_start, t_end = response.find('<title>') + 7, response.find('</title>')
+        t_start = response.find('<title>') + 7
+        t_end = response.find('</title>')
         title = response[t_start:t_end].replace('\n', ' ').strip()
-        l_start, l_end = response.find('<id>') + 4, response.find('</id>')
+        l_start = response.find('<id>') + 4
+        l_end = response.find('</id>')
         link = response[l_start:l_end].strip()
-        log_entry = f"\n* **[Research]** {title} - [Link]({link})\n"
+        log_entry = f"\n* **[Research]** {title} - [Access Paper]({link})\n"
     else: raise Exception()
 except:
-    log_entry = f"\n* **[Defense-AI Fact]** {random.choice(fallback_facts)}\n"
+    log_entry = f"\n* **[Defense-AI Fact]** {random.choice(fallback_facts)} (API Offline)\n"
 
-# 5. UPDATE README FILE (Corrected & Safe)
+# 5. UPDATE README.MD (FIXED MARKERS)
 with open('README.md', 'r', encoding='utf-8') as f:
     content = f.read()
 
-# Define Markers
-start_marker = ""
-end_marker = ""
+# YE HAIN ASLI MARKERS
+start_marker = "< ! - - GITA_START - - >"
+end_marker = "< ! - - GITA_END - - >"
 
-# The block that will be inserted
 gita_readme_block = f"""{start_marker}
 <div align="center">
   <img src="gita_verse.svg" width="100%" alt="Sacred Protocol" />
 </div>
 {end_marker}"""
 
-# Accurate Regex to find only what's between markers
-pattern = re.compile(rf"{start_marker}.*?{end_marker}", re.DOTALL)
+# Accurate Regex to find and replace only between markers
+pattern = re.compile(rf"{re.escape(start_marker)}.*?{re.escape(end_marker)}", re.DOTALL)
 
 if pattern.search(content):
     content = re.sub(pattern, gita_readme_block, content)
 else:
-    # If markers are missing, add them at the top
+    # If markers not found, add to top
     content = gita_readme_block + "\n\n" + content
 
-# Log Entry at bottom (Keeping your research logs separate)
 with open('README.md', 'w', encoding='utf-8') as f:
-    f.write(content + f"\n### Log: {date_str}{log_entry}")
+    f.write(content + f"### Log: {date_str}{log_entry}")
